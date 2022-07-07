@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+     <item
+         android:id="@+id/home_navigation"
+         android:title="Home"
+         android:icon="@drawable/home_navigation"
+         android:iconTint="@color/black"
+         />
+
+     <item
+         android:id="@id/search_navigation"
+         android:title="Search"
+         android:icon="@drawable/search_navigation"
+         android:iconTint="@color/black"/>
+
+     <item
+         android:id="@+id/account_navigation"
+         android:title="Account"
+         android:icon="@drawable/account_navigation"
+         android:iconTint="@color/black"/>
+</menu>

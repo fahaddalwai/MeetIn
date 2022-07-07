@@ -5,13 +5,14 @@ plugins {
     id 'kotlin-android-extensions'
     id 'androidx.navigation.safeargs'
     id 'dagger.hilt.android.plugin'
+    id 'com.google.gms.google-services'
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.gdscdwp"
+        applicationId "com.example.meetin"
         minSdk 23
         targetSdk 31
         versionCode 1
@@ -49,6 +50,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     implementation 'com.google.android.ads:mediation-test-suite:3.0.0'
     implementation 'org.chromium.net:cronet-embedded:102.5005.125'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     testImplementation 'junit:junit:4.13.2'
     implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
@@ -81,7 +83,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0' //for retrofit conversion
     implementation("androidx.fragment:fragment-ktx:1.4.1")
 
-    implementation 'com.google.dagger:hilt-android:2.40.1'
-    kapt 'com.google.dagger:hilt-compiler:2.40.1'
+    implementation("com.google.dagger:hilt-android:2.42")
+    kapt("com.google.dagger:hilt-android-compiler:2.42")
 
+}
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

@@ -3,7 +3,7 @@
     <style name="Theme.MeetIn" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/background_white</item>
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/teal_200</item>
+        <item name="colorPrimary">@color/light_green</item>
         <item name="colorPrimaryVariant">@color/light_green</item>
         <item name="colorOnPrimary">@color/purple_200</item>
         <!-- Secondary brand color. -->
