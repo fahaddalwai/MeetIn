@@ -10,16 +10,14 @@ import com.example.meetin.core.util.Resource
 import com.example.meetin.core.util.isValidEmail
 import com.example.meetin.domain.model.SignupRequest
 import com.example.meetin.domain.repository.Repository
-import com.example.meetin.remote.RepositoryImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
-class SignupViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class SigninViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     private val _emailError = MutableLiveData<String>()
     val emailError: LiveData<String>
@@ -29,37 +27,27 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
     val passwordError: LiveData<String>
         get() = _passwordError
 
-    private val _passwordMisMatchError = MutableLiveData<String>()
-    val passwordMisMatchError: LiveData<String>
-        get() = _passwordMisMatchError
-
-    private val _eventGoToSetup = MutableLiveData<Boolean>()
-    val eventGoToSetup: LiveData<Boolean>
-        get() = _eventGoToSetup
+    private val _eventGoToHome = MutableLiveData<Boolean>()
+    val eventGoToHome: LiveData<Boolean>
+        get() = _eventGoToHome
 
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-    val username=MutableLiveData<String>()
+    val _apiError = MutableLiveData<String>()
+    val apiError: LiveData<String>
+        get() = _apiError
 
-    val email = MutableLiveData<String>()
+    val username= MutableLiveData<String>()
 
     val password = MutableLiveData<String>()
-
-    val repeatedPassword = MutableLiveData<String>()
-
-
-
-
-
 
 
     private fun isValidEmailAndPassword(
         email: String,
-        password: String,
-        passwordSecond: String
+        password: String
     ): Boolean {
         if (email.isValidEmail()) {
             _emailError.value = ""
@@ -73,36 +61,32 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
             _passwordError.value = "Cannot be empty"
             return false
         }
-        if (password != passwordSecond) {
-            _passwordMisMatchError.value = "Passwords don't match"
-            return false
-        } else {
-            _passwordMisMatchError.value = ""
-        }
+
         return true
     }
 
-    fun signInUser() {
+    fun loginUser() {
         if (isValidEmailAndPassword(
-                email.value.toString(),
+                username.value.toString(),
                 password.value.toString(),
-                repeatedPassword.value.toString()
             )
         ) {
             viewModelScope.launch {
-                repository.signup(
+                repository.login(
                     SignupRequest(
-                        email.value.toString().trim(),
+                        username.value.toString().trim(),
                         password.value.toString().trim()
                     )
                 ).onEach { result ->
                     when (result) {
                         is Resource.Success -> {
                             _isLoading.value = false
-                            _eventGoToSetup.value=true
+                            _eventGoToHome.value=true
                         }
                         is Resource.Error -> {
                             _isLoading.value = false
+                            _apiError.value=result.message.toString()
+                            Log.i("errorrr",result.message.toString())
 
                         }
                         is Resource.Loading -> {
@@ -124,7 +108,7 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
                     when (result) {
                         is Resource.Success -> {
                             _isLoading.value = false
-                            _eventGoToSetup.value= true
+                            _eventGoToHome.value= true
                         }
                         is Resource.Error -> {
                             _isLoading.value = false
@@ -136,7 +120,6 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
                 }.launchIn(this)
         }
     }
-
 
 
 

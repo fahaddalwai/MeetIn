@@ -19,4 +19,5 @@ interface Repository {
     suspend fun inputUserDetails(user: UserDetailsRequest): Flow<Resource<String>>
 
     suspend fun gsoSignUp(data: Intent?):Flow<Resource<FirebaseUser>>
+
 }

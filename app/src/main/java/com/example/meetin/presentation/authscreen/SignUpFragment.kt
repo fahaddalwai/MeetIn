@@ -48,28 +48,23 @@ class SignUpFragment : Fragment() {
         }
 
 
-        viewModel.emailError.observe(viewLifecycleOwner) { msg ->
-            if(msg!="") {
-                context?.let {
-                    Toast.makeText(context,msg,LENGTH_SHORT).show()
-                }
+        viewModel.emailError.observe(viewLifecycleOwner) {
+            if(it!="") {
+                    Toast.makeText(requireContext(),it,LENGTH_SHORT).show()
             }
         }
 
         viewModel.passwordError.observe(viewLifecycleOwner) { msg ->
             if(msg!="") {
-                context?.let {
-                    Toast.makeText(context,msg,LENGTH_SHORT).show()
-                }
+                Toast.makeText(requireContext(),msg,LENGTH_SHORT).show()
             }
         }
 
 
         viewModel.passwordMisMatchError.observe(viewLifecycleOwner) { msg ->
+            Log.i("itassss",msg)
             if(msg!="") {
-                context?.let {
-                    Toast.makeText(context,msg,LENGTH_SHORT).show()
-                }
+                Toast.makeText(requireContext(),msg,LENGTH_SHORT).show()
             }
         }
 

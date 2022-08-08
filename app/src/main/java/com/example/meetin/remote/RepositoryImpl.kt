@@ -74,7 +74,7 @@ class RepositoryImpl @Inject constructor(
                             trySend(Resource.Success(SignupResponse(responseUser.uid)))
                         }
                     } else {
-                        trySend(Resource.Error("Unable to login"))
+                        trySend(Resource.Error(task.exception.toString()))
                     }
                 }
             awaitClose { }
@@ -108,9 +108,6 @@ class RepositoryImpl @Inject constructor(
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         val user = auth.currentUser
-                        if (user != null) {
-
-                        }
                         trySend(Resource.Success(user))
                     } else {
                         trySend(Resource.Error(task.exception.toString()))
@@ -123,6 +120,8 @@ class RepositoryImpl @Inject constructor(
         }
         awaitClose {  }
     }
+
+
 
 
 }
