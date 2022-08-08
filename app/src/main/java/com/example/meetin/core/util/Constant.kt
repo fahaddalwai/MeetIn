@@ -1,4 +1,6 @@
 package com.example.meetin.core.util
 
-class Constant {
+object Constants {
+    const val GOOGLE_CLIENT_ID = "865090821364-vja6esltf9jin68gj4rp6125u67o6gfg.apps.googleusercontent.com"
+    const val RC_SIGN_IN = 1001
 }

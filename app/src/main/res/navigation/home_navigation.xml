@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.meetin.HomeFragment"
+        android:name="com.example.meetin.presentation.mainscreen.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/messagesFragment"
-        android:name="com.example.meetin.MessagesFragment"
+        android:name="com.example.meetin.presentation.mainscreen.MessagesFragment"
         android:label="fragment_messages"
         tools:layout="@layout/fragment_messages" />
 </navigation>

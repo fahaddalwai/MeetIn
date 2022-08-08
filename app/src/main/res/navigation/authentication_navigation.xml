@@ -3,21 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/authentication_navigation"
-    app:startDestination="@id/setupAccountFragment2">
+    app:startDestination="@id/signUpFragment">
 
     <fragment
-        android:id="@+id/setupAccountFragment2"
-        android:name="com.example.meetin.SetupAccountFragment"
+        android:id="@+id/setupAccountFragment"
+        android:name="com.example.meetin.presentation.authscreen.SetupAccountFragment"
         android:label="fragment_setup_account"
-        tools:layout="@layout/fragment_setup_account" />
+        tools:layout="@layout/fragment_setup_account" >
+        <action
+            android:id="@+id/action_setupAccountFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
     <fragment
-        android:id="@+id/signInFragment2"
-        android:name="com.example.meetin.SignInFragment"
+        android:id="@+id/signInFragment"
+        android:name="com.example.meetin.presentation.authscreen.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
     <fragment
-        android:id="@+id/signUpFragment2"
-        android:name="com.example.meetin.SignUpFragment"
+        android:id="@+id/signUpFragment"
+        android:name="com.example.meetin.presentation.authscreen.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_setupAccountFragment"
+            app:destination="@id/setupAccountFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.meetin.presentation.authscreen.SplashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splashFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.meetin.presentation.mainscreen.MainActivity"
+        android:label="MainActivity" />
 </navigation>

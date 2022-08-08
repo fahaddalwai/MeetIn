@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="background_white">#FFFDF9</color>
     <color name="light_green">#88A090</color>
+    <color name="tick_mark_green">#34b233</color>
 </resources>
