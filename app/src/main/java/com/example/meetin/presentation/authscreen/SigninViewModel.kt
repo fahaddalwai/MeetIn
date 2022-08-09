@@ -103,7 +103,7 @@ class SigninViewModel @Inject constructor(private val repository: Repository) : 
 
     fun gsoLogin(data: Intent){
         viewModelScope.launch {
-            repository.gsoSignUp(data)
+            repository.gsoSignIn(data)
                 .onEach { result ->
                     when (result) {
                         is Resource.Success -> {

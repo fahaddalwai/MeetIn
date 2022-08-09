@@ -10,14 +10,15 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    suspend fun signup(user: SignupRequest): Flow<Resource<SignupResponse>>
+    fun signup(user: SignupRequest): Flow<Resource<SignupResponse>>
 
-    suspend fun checkIfUserExists():Flow<Resource<Boolean>>
 
-    suspend fun login(user:SignupRequest): Flow<Resource<SignupResponse>>
+    fun login(user:SignupRequest): Flow<Resource<SignupResponse>>
 
-    suspend fun inputUserDetails(user: UserDetailsRequest): Flow<Resource<String>>
+    fun inputUserDetails(user: UserDetailsRequest)
 
-    suspend fun gsoSignUp(data: Intent?):Flow<Resource<FirebaseUser>>
+    fun gsoSignIn(data: Intent?):Flow<Resource<FirebaseUser>>
+
+    fun gsoSignUp(data: Intent?):Flow<Resource<FirebaseUser>>
 
 }
