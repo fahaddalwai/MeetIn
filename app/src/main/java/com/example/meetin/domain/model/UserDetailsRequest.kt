@@ -8,5 +8,8 @@ data class UserDetailsRequest(
     val college: String ="",
     val joinedYear: String ="",
     val graduationYear: String ="",
-    val branch: String =""
+    val branch: String ="",
+    val profilePic:String="",
+    val dob:String="",
+    val gender:String=""
 )

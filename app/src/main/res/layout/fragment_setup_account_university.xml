@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.meetin.presentation.authscreen.SetupAccountUniversityViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.meetin.presentation.authscreen.SetupAccountUniversityViewModel">
+
+        <EditText
+            android:id="@+id/college_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/background_shape_input"
+            android:ems="10"
+            android:text="@={viewModel.college}"
+            android:hint="College"
+            android:inputType="textPersonName"
+            android:padding="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/setup_account_textview" />
+
+        <EditText
+            android:id="@+id/joined_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/background_shape_input"
+            android:ems="10"
+            android:text="@={viewModel.joinedYear}"
+            android:hint="Joined Year"
+            android:inputType="textPersonName"
+            android:padding="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/joined_button"
+            app:layout_constraintStart_toStartOf="@+id/college_text"
+            app:layout_constraintTop_toBottomOf="@+id/college_text" />
+
+        <EditText
+            android:id="@+id/graduation_year"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/background_shape_input"
+            android:ems="10"
+            android:text="@={viewModel.graduationYear}"
+            android:hint="Graduation Year"
+            android:inputType="textPersonName"
+            android:padding="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/joined_year"
+            app:layout_constraintStart_toStartOf="@+id/joined_year"
+            app:layout_constraintTop_toBottomOf="@+id/joined_year" />
+
+        <EditText
+            android:id="@+id/branch_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/background_shape_input"
+            android:ems="10"
+            android:hint="Branch"
+            android:inputType="textPersonName"
+            android:padding="12sp"
+            android:text="@={viewModel.branch}"
+            app:layout_constraintEnd_toEndOf="@+id/college_text"
+            app:layout_constraintStart_toStartOf="@+id/graduation_year"
+            app:layout_constraintTop_toBottomOf="@+id/graduation_year" />
+
+        <ImageView
+            android:id="@+id/next_activity_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/group_12__1_"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/branch_text"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/setup_account_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Setup account"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.16000003" />
+
+        <ImageView
+            android:id="@+id/joined_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/calender"
+            app:layout_constraintBottom_toBottomOf="@+id/joined_year"
+            app:layout_constraintEnd_toEndOf="@+id/college_text"
+            app:layout_constraintTop_toTopOf="@+id/joined_year" />
+
+        <ImageView
+            android:id="@+id/graduation_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/calender"
+            app:layout_constraintBottom_toBottomOf="@+id/graduation_year"
+            app:layout_constraintEnd_toEndOf="@+id/joined_button"
+            app:layout_constraintTop_toTopOf="@+id/graduation_year" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

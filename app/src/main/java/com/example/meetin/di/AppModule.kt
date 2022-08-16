@@ -5,6 +5,7 @@ import com.example.meetin.remote.RepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,9 +20,10 @@ object AppModule{
     @Singleton
     fun provideAppApiRepository(
        auth:FirebaseAuth,
-       db:Firebase
+       db:Firebase,
+       storage: FirebaseStorage
     ): Repository {
-        return RepositoryImpl(auth,db)
+        return RepositoryImpl(auth,db,storage)
     }
 
     @Singleton
@@ -31,5 +33,9 @@ object AppModule{
     @Singleton
     @Provides
     fun provideFirestoreDatabase() = Firebase
+
+    @Singleton
+    @Provides
+    fun provideFirebaseStorage() = FirebaseStorage.getInstance()
 
 }

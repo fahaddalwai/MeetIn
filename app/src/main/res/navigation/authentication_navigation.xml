@@ -11,8 +11,8 @@
         android:label="fragment_setup_account"
         tools:layout="@layout/fragment_setup_account" >
         <action
-            android:id="@+id/action_setupAccountFragment_to_mainActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_setupAccountFragment_to_setupAccountUniversityFragment"
+            app:destination="@id/setupAccountUniversityFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -50,4 +50,12 @@
         android:id="@+id/mainActivity"
         android:name="com.example.meetin.presentation.mainscreen.MainActivity"
         android:label="MainActivity" />
+    <fragment
+        android:id="@+id/setupAccountUniversityFragment"
+        android:name="com.example.meetin.presentation.authscreen.SetupAccountUniversityFragment"
+        android:label="SetupAccountUniversityFragment" >
+        <action
+            android:id="@+id/action_setupAccountUniversityFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
 </navigation>

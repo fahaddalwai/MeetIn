@@ -50,6 +50,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.0'
     implementation 'com.google.android.ads:mediation-test-suite:3.0.0'
     implementation 'org.chromium.net:cronet-embedded:102.5005.125'
+    implementation 'com.google.firebase:firebase-storage:20.0.1'
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
 
 
     testImplementation 'junit:junit:4.13.2'
@@ -102,6 +104,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.2.0'
     implementation 'com.google.firebase:firebase-auth:21.0.6'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.2.1'
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
 // Allow references to generated code
 kapt {
