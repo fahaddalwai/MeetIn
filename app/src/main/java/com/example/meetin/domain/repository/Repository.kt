@@ -3,6 +3,7 @@ package com.example.meetin.domain.repository
 import android.content.Intent
 import android.net.Uri
 import com.example.meetin.core.util.Resource
+import com.example.meetin.domain.model.Post
 import com.example.meetin.domain.model.SignupRequest
 import com.example.meetin.domain.model.SignupResponse
 import com.example.meetin.domain.model.UserDetailsRequest
@@ -30,5 +31,10 @@ interface Repository {
     fun uploadPersonalDetailsToFirebase(user: UserDetailsRequest):Flow<Resource<String>>
 
     fun uploadCollegeDetailsToFirebase(user:UserDetailsRequest):Flow<Resource<String>>
+
+    fun getProfileDetails():Flow<Resource<UserDetailsRequest>>
+
+    fun postImage(fileUri: Uri,caption:String):Flow<Resource<String>>
+
 
 }

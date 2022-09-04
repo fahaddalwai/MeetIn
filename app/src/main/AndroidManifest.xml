@@ -24,6 +24,7 @@
             android:name=".presentation.mainscreen.MainActivity"
             android:exported="true">
 
+
         </activity>
 
         <meta-data

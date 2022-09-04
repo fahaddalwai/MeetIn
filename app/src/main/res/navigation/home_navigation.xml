@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.meetin.presentation.mainscreen.HomeFragment"
+        android:name="com.example.meetin.presentation.mainscreen.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment

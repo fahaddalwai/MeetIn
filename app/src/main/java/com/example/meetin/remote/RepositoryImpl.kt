@@ -4,23 +4,21 @@ import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import com.example.meetin.core.util.Resource
+import com.example.meetin.domain.model.Post
 import com.example.meetin.domain.model.SignupRequest
 import com.example.meetin.domain.model.SignupResponse
 import com.example.meetin.domain.model.UserDetailsRequest
 import com.example.meetin.domain.repository.Repository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -230,6 +228,19 @@ class RepositoryImpl @Inject constructor(
         awaitClose { }
     }
 
+    fun uploadImageInternal(fileUri:Uri):String{
+        var imageUrl=""
+        val fileName = UUID.randomUUID().toString() + ".jpg"
+        val refStorage = storage.reference.child("images/$fileName")
+        refStorage.putFile(fileUri)
+            .addOnSuccessListener { taskSnapshot ->
+                taskSnapshot.storage.downloadUrl.addOnSuccessListener {
+                    imageUrl = it.toString()
+                }
+            }
+        return imageUrl
+    }
+
     override fun uploadProfileImageToFirebase(url: String){
         val email: String = auth.currentUser?.email.toString()
         if(email!="") {
@@ -277,6 +288,51 @@ class RepositoryImpl @Inject constructor(
         }
         awaitClose { }
     }
+
+    override fun getProfileDetails(): Flow<Resource<UserDetailsRequest>> =callbackFlow{
+        trySend(Resource.Loading())
+        val email: String = auth.currentUser?.email.toString()
+        if(email!=""){
+        val docRef = db.firestore.collection("users").document(email)
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    try {
+                        val userObject=document.toObject<UserDetailsRequest>()
+                        trySend(Resource.Success(userObject))
+                    } catch (e: Exception) {
+                        trySend(Resource.Error(e.toString()))
+                    }
+                } else {
+                    trySend(Resource.Error("Error"))
+                }
+            }}else{
+            trySend(Resource.Error("Email does not exist"))
+        }
+        awaitClose { }
+    }
+
+    override fun postImage(fileUri: Uri,caption:String): Flow<Resource<String>> =callbackFlow{
+        trySend(Resource.Loading())
+        val email: String = auth.currentUser?.email.toString()
+        if(email!=""){
+            val imageUrl=uploadImageInternal(fileUri)
+            db.firestore.collection("users").document(email)
+                .update(mapOf(
+                    "postUrl" to imageUrl,
+                    "caption" to caption,
+
+                ))
+            trySend(Resource.Success("Image has been successfully uploaded"))
+
+        }else{
+            trySend(Resource.Error("Could not find the email address"))
+        }
+
+        awaitClose { }
+    }
+
+
 
 
 }

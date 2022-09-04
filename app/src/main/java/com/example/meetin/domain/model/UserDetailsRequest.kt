@@ -11,5 +11,8 @@ data class UserDetailsRequest(
     val branch: String ="",
     val profilePic:String="",
     val dob:String="",
-    val gender:String=""
-)
+    val gender:String="",
+    val posts: List<Post> = emptyList<Post>()
+){
+    constructor(): this("", "")
+}
