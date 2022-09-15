@@ -6,5 +6,7 @@ import java.util.*
 data class Post(
     val postUrl:String="",
     val caption:String="",
-    val likes:Int=0
+    val name:String="",
+    val university:String="",
+    val profileUrl:String=""
 )
