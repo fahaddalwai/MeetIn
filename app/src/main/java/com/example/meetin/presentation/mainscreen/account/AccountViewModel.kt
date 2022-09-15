@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.meetin.core.util.Resource
+import com.example.meetin.domain.model.Post
 import com.example.meetin.domain.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -23,6 +24,12 @@ class AccountViewModel @Inject constructor(private val repository: Repository) :
 
     val collegeDetails=MutableLiveData<String>()
 
+    private val _posts = MutableLiveData<List<Post>>()
+    val posts: LiveData<List<Post>>
+        get() = _posts
+
+
+    val followersCount= MutableLiveData<String>()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
@@ -32,12 +39,13 @@ class AccountViewModel @Inject constructor(private val repository: Repository) :
     val apiError: LiveData<String>
         get() = _apiError
 
-    private fun getAccountDetails(){
+    fun getAccountDetails(){
         viewModelScope.launch{
             repository.getProfileDetails().onEach { result->
                 when (result) {
                     is Resource.Success -> {
-                        Log.i("rsultsetst",result.toString())
+                        followersCount.value= result.data?.friends?.size.toString()+" Friends"
+                        _posts.value=result.data?.posts
                         _isLoading.value = false
                         username.value = result.data?.username
                         aboutMe.value = result.data?.aboutMe
@@ -61,7 +69,13 @@ class AccountViewModel @Inject constructor(private val repository: Repository) :
         }
         }
 
+
+
+
+
+
     init{
         getAccountDetails()
+
     }
     }
