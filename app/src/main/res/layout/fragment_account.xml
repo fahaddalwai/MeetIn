@@ -19,9 +19,9 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,7 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@{viewModel.aboutMe}"
-            android:textSize="20sp"
+            android:textSize="18sp"
+            android:textStyle="normal"
             app:layout_constraintStart_toStartOf="@+id/bio_name"
             app:layout_constraintTop_toBottomOf="@+id/bio_name" />
 
@@ -43,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@{viewModel.username}"
-            android:textSize="24sp"
+            android:textSize="26sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/profile_picture"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/profile_picture"
@@ -51,11 +53,11 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_picture"
+            profileUrl="@{viewModel.profileImage}"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginStart="16dp"
-            profileUrl="@{viewModel.profileImage}"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="42dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
@@ -77,6 +79,7 @@
             android:layout_height="60dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/edit_bio_icon"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/add_image"
             app:layout_constraintEnd_toStartOf="@+id/add_image"
             app:layout_constraintHorizontal_bias="1.0"
@@ -86,11 +89,10 @@
             android:id="@+id/view3"
             android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:alpha="0.2"
-            android:background="@color/black"
+            android:layout_marginEnd="2dp"
+            android:background="#000000"
             android:foregroundTintMode="@color/black"
             app:layout_constraintBottom_toTopOf="@+id/recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -112,10 +114,19 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="@{viewModel.collegeDetails}"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/bio_caption"
             app:layout_constraintTop_toBottomOf="@+id/bio_caption" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@{viewModel.followersCount}"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/add_image"
+            app:layout_constraintTop_toBottomOf="@+id/add_image" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

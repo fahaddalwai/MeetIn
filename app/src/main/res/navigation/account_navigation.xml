@@ -9,5 +9,38 @@
         android:id="@+id/accountFragment"
         android:name="com.example.meetin.presentation.mainscreen.account.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_postPicFragment"
+            app:destination="@id/postPicFragment"
+              />
+        <action
+            android:id="@+id/action_accountFragment_to_expandedPostFragment"
+            app:destination="@id/expandedPostFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/postPicFragment"
+        android:name="com.example.meetin.presentation.mainscreen.account.PostPicFragment"
+        android:label="PostPicFragment"
+        tools:layout="@layout/fragment_post_pic">
+        <action
+            android:id="@+id/action_postPicFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/expandedPostFragment"
+        android:name="com.example.meetin.presentation.mainscreen.account.ExpandedPostFragment"
+        android:label="fragment_expanded_post"
+        tools:layout="@layout/fragment_expanded_post" >
+        <action
+            android:id="@+id/action_expandedPostFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <argument
+            android:name="url"
+            app:argType="string" />
+
+        <argument
+            android:name="caption"
+            app:argType="string" />
+    </fragment>
 </navigation>

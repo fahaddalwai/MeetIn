@@ -151,7 +151,6 @@
             android:id="@+id/add_image_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/add_image_foreground"
             android:clickable="true"
             android:src="@drawable/add_image_foreground"
             app:backgroundTint="@color/light_green"
