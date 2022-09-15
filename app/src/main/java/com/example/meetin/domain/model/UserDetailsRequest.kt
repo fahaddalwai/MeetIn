@@ -12,7 +12,9 @@ data class UserDetailsRequest(
     val profilePic:String="",
     val dob:String="",
     val gender:String="",
-    val posts: List<Post> = emptyList<Post>()
+    val friends:List<FriendRequest> = emptyList<FriendRequest>(),
+    val posts: List<Post> = emptyList<Post>(),
+    val friendsPostToSee: List<Post> = emptyList<Post>(),
 ){
     constructor(): this("", "")
 }
