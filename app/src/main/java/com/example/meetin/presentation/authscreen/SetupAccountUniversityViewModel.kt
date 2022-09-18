@@ -41,11 +41,14 @@ class SetupAccountUniversityViewModel @Inject constructor(private val repository
     val nextPage: LiveData<Boolean>
         get() = _nextPage
 
+
+
     fun updateUserDetails() {
-        if(!(college.value.toString().isEmpty() ||
-                    joinedYear.value.toString().isEmpty() ||
-                    branch.value.toString().isEmpty() ||
-                    graduationYear.value.toString().isEmpty()))
+        if(!(college.value.toString().isNullOrEmpty() ||
+                    joinedYear.value.toString().isNullOrEmpty() ||
+                    branch.value.toString().isNullOrEmpty() ||
+                    branch.value.toString().isNullOrEmpty() ||
+                    graduationYear.value.toString().isNullOrEmpty()))
             viewModelScope.launch {
                 repository.uploadCollegeDetailsToFirebase(
                     UserDetailsRequest(
@@ -74,7 +77,7 @@ class SetupAccountUniversityViewModel @Inject constructor(private val repository
                 }.launchIn(this)
 
             }else{
-            _emptyError.value="Some fields seem to be empty"
+            _emptyError.value="Some fields seem to be empty!"
         }
     }
 

@@ -44,7 +44,7 @@
             android:id="@+id/username_text"
             android:layout_width="308dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/background_shape_input"
             android:ems="10"
@@ -54,7 +54,7 @@
             android:text="@={viewModel.username}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_image_view" />
+            app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
         <EditText
             android:id="@+id/about_me_text"
@@ -74,17 +74,6 @@
             app:layout_constraintEnd_toEndOf="@+id/available_text"
             app:layout_constraintStart_toStartOf="@+id/username_text"
             app:layout_constraintTop_toBottomOf="@+id/username_text" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image_view"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/account_navigation"
-            app:civ_circle_background_color="@color/light_green"
-            app:layout_constraintEnd_toEndOf="@+id/textView3"
-            app:layout_constraintStart_toStartOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <ImageView
             android:id="@+id/available_text"
@@ -116,6 +105,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableRow"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/group_12__1_" />
 
 
@@ -147,16 +138,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Dob_text" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_image_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:src="@drawable/add_image_foreground"
-            app:backgroundTint="@color/light_green"
-            app:layout_constraintBottom_toBottomOf="@+id/profile_image_view"
-            app:layout_constraintEnd_toEndOf="@+id/profile_image_view" />
-
         <ProgressBar
             android:id="@+id/progressBar3"
             style="?android:attr/progressBarStyle"
@@ -174,18 +155,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="32dp"
             android:background="@drawable/background_shape"
             android:padding="2sp"
-            app:layout_constraintBottom_toTopOf="@+id/next_button"
             app:layout_constraintEnd_toEndOf="@+id/textView7"
             app:layout_constraintStart_toStartOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/textView7"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toBottomOf="@+id/textView7">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/male"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:background="@color/background_white"
                 android:padding="12sp"
@@ -198,9 +176,9 @@
                 android:background="@color/black" />
 
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/female"
-                android:layout_width="wrap_content"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:background="@color/background_white"
                 android:padding="12sp"
@@ -213,15 +191,105 @@
                 android:background="@color/black" />
 
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/trans"
-                android:layout_width="wrap_content"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:background="@color/background_white"
                 android:padding="12sp"
                 android:src="@drawable/transgender"
                 tools:srcCompat="@drawable/transgender" />
         </TableRow>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/background_shape_profile"
+
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/gridLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gridLayout" />
+
+        <androidx.gridlayout.widget.GridLayout
+            android:id="@+id/gridLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            app:columnCount="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:rowCount="2">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_shape_input"
+                android:padding="2dp"
+                app:layout_column="0"
+                app:layout_row="0"
+                app:srcCompat="@drawable/female1" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_shape_input"
+                android:padding="1dp"
+                app:layout_column="2"
+                app:layout_row="0"
+                app:srcCompat="@drawable/male1" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_shape_input"
+                android:padding="1dp"
+                app:layout_column="1"
+                app:layout_row="0"
+                app:srcCompat="@drawable/female2" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_shape_input"
+                android:padding="2dp"
+                app:layout_column="0"
+                app:layout_row="1"
+                app:srcCompat="@drawable/male2" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_shape_input"
+                app:layout_column="1"
+                app:layout_row="1"
+                app:srcCompat="@drawable/male3" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/background_shape_input"
+                app:layout_column="2"
+                app:layout_row="1"
+                app:srcCompat="@drawable/male4" />
+        </androidx.gridlayout.widget.GridLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

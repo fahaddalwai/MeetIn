@@ -15,67 +15,61 @@
         android:layout_height="match_parent"
         tools:context="com.example.meetin.presentation.authscreen.SetupAccountUniversityViewModel">
 
-        <EditText
+        <Spinner
             android:id="@+id/college_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/background_shape_input"
-            android:ems="10"
-            android:text="@={viewModel.college}"
-            android:hint="College"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="24dp"
             android:inputType="textPersonName"
-            android:padding="12sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/setup_account_textview" />
 
-        <EditText
+        <TextView
             android:id="@+id/joined_year"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
             android:layout_marginTop="32dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="32dp"
+
             android:background="@drawable/background_shape_input"
             android:ems="10"
-            android:text="@={viewModel.joinedYear}"
             android:hint="Joined Year"
-            android:inputType="textPersonName"
             android:padding="12sp"
+            android:text="@={viewModel.joinedYear}"
+            android:textSize="20sp"
             app:layout_constraintEnd_toStartOf="@+id/joined_button"
-            app:layout_constraintStart_toStartOf="@+id/college_text"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/college_text" />
 
-        <EditText
+        <TextView
             android:id="@+id/graduation_year"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@drawable/background_shape_input"
             android:ems="10"
-            android:text="@={viewModel.graduationYear}"
             android:hint="Graduation Year"
-            android:inputType="textPersonName"
+
             android:padding="12sp"
+            android:text="@={viewModel.graduationYear}"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="@+id/joined_year"
             app:layout_constraintStart_toStartOf="@+id/joined_year"
             app:layout_constraintTop_toBottomOf="@+id/joined_year" />
 
-        <EditText
+        <Spinner
             android:id="@+id/branch_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:background="@drawable/background_shape_input"
-            android:ems="10"
-            android:hint="Branch"
             android:inputType="textPersonName"
-            android:padding="12sp"
-            android:text="@={viewModel.branch}"
             app:layout_constraintEnd_toEndOf="@+id/college_text"
-            app:layout_constraintStart_toStartOf="@+id/graduation_year"
+            app:layout_constraintStart_toStartOf="@+id/college_text"
             app:layout_constraintTop_toBottomOf="@+id/graduation_year" />
 
         <ImageView
@@ -127,6 +121,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

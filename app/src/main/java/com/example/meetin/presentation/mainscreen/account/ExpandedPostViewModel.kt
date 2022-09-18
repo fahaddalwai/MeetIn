@@ -30,12 +30,10 @@ class ExpandedPostViewModel @Inject constructor(private val repository: Reposito
             _postUrl.value=it
         }
 
-        state.get<Int>("likes")?.let {
-            _postLikes.value=it
-        }
 
         state.get<String>("caption")?.let {
-            _caption.value= "$it Likes"
+            _caption.value= it
+            Log.i("sr",it)
         }
 
     }

@@ -12,10 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.meetin.R
-import com.example.meetin.core.util.autoFitColumns
 import com.example.meetin.databinding.FragmentAccountBinding
-import com.example.meetin.databinding.FragmentSetupAccountBinding
-import com.example.meetin.presentation.authscreen.SetupViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,13 +35,6 @@ class AccountFragment : Fragment() {
         val manager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
 
         binding.recyclerView.layoutManager = manager
-
-
-
-
-
-
-
 
         viewModel.posts.observe(viewLifecycleOwner){ list ->
 

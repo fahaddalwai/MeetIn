@@ -3,10 +3,7 @@ package com.example.meetin.domain.repository
 import android.content.Intent
 import android.net.Uri
 import com.example.meetin.core.util.Resource
-import com.example.meetin.domain.model.Post
-import com.example.meetin.domain.model.SignupRequest
-import com.example.meetin.domain.model.SignupResponse
-import com.example.meetin.domain.model.UserDetailsRequest
+import com.example.meetin.domain.model.*
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 
@@ -36,5 +33,17 @@ interface Repository {
 
     fun postImage(fileUri: Uri,caption:String):Flow<Resource<String>>
 
+    fun searchFriend():Flow<Resource<List<UserDetailsRequest>>>
 
+    fun addFriend(friend: FriendRequest):Flow<Resource<String>>
+
+    fun showFriendsPosts():Flow<Resource<List<Post>>>
+
+    fun searchForFriends(friend:String):Flow<Resource<List<UserDetailsRequest>>>
+
+    fun getAllEvents():Flow<Resource<List<Event>>>
+
+    fun logOut():Flow<Resource<Boolean>>
+
+    fun checkIfLoggedIn():Flow<Resource<Boolean>>
 }

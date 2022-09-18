@@ -15,8 +15,16 @@
          android:iconTint="@color/black"/>
 
      <item
+         android:id="@+id/event_navigation"
+         android:title="Events"
+         android:icon="@drawable/event_navigation"
+         android:iconTint="@color/black"/>
+
+     <item
          android:id="@+id/account_navigation"
          android:title="Account"
          android:icon="@drawable/account_navigation"
          android:iconTint="@color/black"/>
+
+
 </menu>

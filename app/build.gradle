@@ -52,6 +52,7 @@ dependencies {
     implementation 'org.chromium.net:cronet-embedded:102.5005.125'
     implementation 'com.google.firebase:firebase-storage:20.0.1'
     implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
 
 
     testImplementation 'junit:junit:4.13.2'

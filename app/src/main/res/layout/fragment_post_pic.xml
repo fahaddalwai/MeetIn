@@ -25,9 +25,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.13"
+            app:layout_constraintVertical_bias="0.25"
 
-             />
+            />
 
         <EditText
             android:id="@+id/caption"
@@ -35,15 +35,15 @@
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="32dp"
-            android:text="@={viewModel.caption}"
             android:background="@drawable/background_shape_input"
             android:gravity="top|start"
             android:hint="Enter your caption"
             android:inputType="textMultiLine"
-            android:maxLines="10"
+            android:maxLines="8"
             android:minLines="3"
             android:padding="8dp"
             android:scrollbars="vertical"
+            android:text="@={viewModel.caption}"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/postButton"
             app:layout_constraintEnd_toEndOf="@+id/imagePost"
@@ -71,7 +71,7 @@
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/back_button"
             app:layout_constraintBottom_toTopOf="@+id/imagePost"
@@ -99,6 +99,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/uploadText"
+            android:layout_width="278dp"
+            android:layout_height="159dp"
+            android:gravity="center"
+            android:text="Upload a picture or take one right now!"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imagePost"
+            app:layout_constraintEnd_toEndOf="@+id/imagePost"
+            app:layout_constraintStart_toStartOf="@+id/imagePost"
+            app:layout_constraintTop_toTopOf="@+id/imagePost" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

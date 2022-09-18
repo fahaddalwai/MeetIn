@@ -31,13 +31,39 @@ class HomeViewModel @Inject constructor(private val repository: Repository) : Vi
     val apiError: LiveData<String>
         get() = _apiError
 
+    private val _logout = MutableLiveData<Boolean>()
+    val logout: LiveData<Boolean>
+        get() = _logout
 
-    private fun getFriendsPosts(){
+
+    fun getFriendsPosts(){
         viewModelScope.launch{
             repository.showFriendsPosts().onEach { result->
                 when (result) {
                     is Resource.Success -> {
                         _postsList.value=result.data
+                        _isLoading.value = false
+                    }
+                    is Resource.Loading -> {
+                        _isLoading.value = true
+                    }
+                    is Resource.Error -> {
+                        _apiError.value = result.message
+                        _isLoading.value = false
+
+                    }
+                }
+            }.launchIn(this)
+        }
+    }
+
+    fun logOut(){
+        viewModelScope.launch{
+            repository.logOut().onEach { result->
+                when (result) {
+                    is Resource.Success -> {
+                        _logout.value=result.data
+                        _isLoading.value = false
                     }
                     is Resource.Loading -> {
                         _isLoading.value = true

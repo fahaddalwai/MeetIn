@@ -110,9 +110,9 @@ class SetupViewModel @Inject constructor(private val repository: Repository) : V
     }
 
     fun updateUserDetails() {
-        if(!(aboutMe.value.toString().isEmpty() ||
-            username.value.toString().isEmpty() ||
-            dateOfBirth.value.toString().isEmpty()))
+        if(!(aboutMe.value.toString().isNullOrEmpty() ||
+            username.value.toString().isNullOrEmpty() ||
+            dateOfBirth.value.toString().isNullOrEmpty()))
         viewModelScope.launch {
             repository.uploadPersonalDetailsToFirebase(
                 UserDetailsRequest(

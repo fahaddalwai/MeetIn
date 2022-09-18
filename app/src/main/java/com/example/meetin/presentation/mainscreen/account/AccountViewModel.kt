@@ -45,7 +45,8 @@ class AccountViewModel @Inject constructor(private val repository: Repository) :
                 when (result) {
                     is Resource.Success -> {
                         followersCount.value= result.data?.friends?.size.toString()+" Friends"
-                        _posts.value=result.data?.posts
+                        _posts.value= result.data?.posts?.reversed()
+
                         _isLoading.value = false
                         username.value = result.data?.username
                         aboutMe.value = result.data?.aboutMe

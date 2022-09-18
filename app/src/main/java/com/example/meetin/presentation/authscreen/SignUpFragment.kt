@@ -62,7 +62,6 @@ class SignUpFragment : Fragment() {
 
 
         viewModel.passwordMisMatchError.observe(viewLifecycleOwner) { msg ->
-            Log.i("itassss",msg)
             if(msg!="") {
                 Toast.makeText(requireContext(),msg,LENGTH_SHORT).show()
             }

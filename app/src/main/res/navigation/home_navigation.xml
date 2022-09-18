@@ -9,10 +9,15 @@
         android:id="@+id/homeFragment"
         android:name="com.example.meetin.presentation.mainscreen.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_authentication_navigation"
+            app:destination="@id/authentication_navigation" />
+    </fragment>
     <fragment
         android:id="@+id/messagesFragment"
         android:name="com.example.meetin.presentation.mainscreen.MessagesFragment"
         android:label="fragment_messages"
         tools:layout="@layout/fragment_messages" />
+    <include app:graph="@navigation/authentication_navigation" />
 </navigation>

@@ -1,8 +1,6 @@
 package com.example.meetin.presentation.authscreen
 
-import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +9,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.net.toFile
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
@@ -21,7 +18,6 @@ import com.example.meetin.databinding.FragmentSetupAccountBinding
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
 @AndroidEntryPoint
 class SetupAccountFragment : Fragment() {
@@ -42,6 +38,8 @@ class SetupAccountFragment : Fragment() {
             binding.progressBar3.isVisible=it
         }
 
+
+        binding.imageView3.setImageResource(R.drawable.male1)
         viewModel.nextPage.observe(viewLifecycleOwner) {
             if(it) {
                 findNavController().navigate(R.id.action_setupAccountFragment_to_setupAccountUniversityFragment)
@@ -75,13 +73,40 @@ class SetupAccountFragment : Fragment() {
             }
         }
 
-        binding.addImageFab.setOnClickListener{
-            ImagePicker.with(this)
-                .crop()	    			//Crop image(Optional), Check Customization for more option
-                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
-                .start()
+
+        binding.imageView4.setOnClickListener{
+            binding.imageView3.setImageResource(R.drawable.female1)
+            viewModel.addImageToFirebase(getUri("female1"))
         }
+
+        binding.imageView6.setOnClickListener{
+            binding.imageView3.setImageResource(R.drawable.female2)
+            viewModel.addImageToFirebase(getUri("female2"))
+
+        }
+
+        binding.imageView5.setOnClickListener{
+            binding.imageView3.setImageResource(R.drawable.male1)
+            viewModel.addImageToFirebase(getUri("male1"))
+        }
+
+        binding.imageView10.setOnClickListener{
+            binding.imageView3.setImageResource(R.drawable.male2)
+            viewModel.addImageToFirebase(getUri("male2"))
+        }
+
+        binding.imageView12.setOnClickListener{
+            binding.imageView3.setImageResource(R.drawable.male3)
+            viewModel.addImageToFirebase(getUri("male3"))
+        }
+
+        binding.imageView13.setOnClickListener{
+            binding.imageView3.setImageResource(R.drawable.male4)
+            viewModel.addImageToFirebase(getUri("male4"))
+        }
+
+
+
 
 
         binding.selectDate.setOnClickListener {
@@ -91,9 +116,11 @@ class SetupAccountFragment : Fragment() {
             val day = c.get(Calendar.DAY_OF_MONTH)
 
 
-            activity?.let { fragActivity ->
-                DatePickerDialog(
-                    fragActivity,
+
+
+            context?.let { it1 ->
+                val datePickerDialog=DatePickerDialog(
+                    it1,
                     { _, year, monthOfYear, dayOfMonth ->
                         binding.DobText.setText("$dayOfMonth / $monthOfYear / $year")
                     },
@@ -101,8 +128,16 @@ class SetupAccountFragment : Fragment() {
                     month,
                     day
                 )
-            }?.show()
+
+                datePickerDialog.datePicker.maxDate=Date().time
+
+                datePickerDialog.show()
+            }
+
+
+
         }
+
 
 
         binding.male.setOnClickListener {
@@ -148,22 +183,10 @@ class SetupAccountFragment : Fragment() {
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == Activity.RESULT_OK) {
-            val uri: Uri = data?.data!!
-
-            val image = data.dataString
-            val imageUri = Uri.parse(image)
-
-            binding.profileImageView.setImageURI(imageUri)
-            viewModel.addImageToFirebase(imageUri)
-        } else if (resultCode == ImagePicker.RESULT_ERROR) {
-            Toast.makeText(context, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, "Task Cancelled", Toast.LENGTH_SHORT).show()
-        }
+    fun getUri(fileUri: String): Uri {
+        return Uri.parse("android.resource://" + context!!.packageName.toString() + "/drawable/$fileUri")
     }
+
 
 
 }
