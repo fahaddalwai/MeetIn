@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.meetin.presentation.authscreen.SetupAccountUniversityViewModel" />
+            type="com.isavit.meetin.presentation.authscreen.SetupAccountUniversityViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.meetin.presentation.authscreen.SetupAccountUniversityViewModel">
+        tools:context="com.isavit.meetin.presentation.authscreen.SetupAccountUniversityViewModel">
 
         <Spinner
             android:id="@+id/college_text"

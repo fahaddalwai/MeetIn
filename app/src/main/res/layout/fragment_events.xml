@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.meetin.presentation.mainscreen.events.EventViewModel" />
+            type="com.isavit.meetin.presentation.mainscreen.events.EventViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

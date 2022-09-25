@@ -6,7 +6,7 @@
     <data>
         <variable
             name="userDetail"
-            type="com.example.meetin.domain.model.UserDetailsRequest"/>
+            type="com.isavit.meetin.domain.model.UserDetailsRequest"/>
     </data>
 
 

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.meetin">
+    package="com.isavit.meetin">
 
     <application
-        android:name=".App"
+        android:name="com.isavit.meetin.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeetIn">
         <activity
-            android:name=".presentation.authscreen.AuthActivity"
+            android:name="com.isavit.meetin.presentation.authscreen.AuthActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing"
             android:configChanges="orientation"
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.mainscreen.MainActivity"
+            android:name="com.isavit.meetin.presentation.mainscreen.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustNothing"
             android:configChanges="orientation"

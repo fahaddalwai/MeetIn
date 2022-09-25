@@ -5,10 +5,10 @@
     <data>
         <variable
             name="image"
-            type="com.example.meetin.domain.model.Post"/>
+            type="com.isavit.meetin.domain.model.Post"/>
         <variable
             name="clickListener"
-            type="com.example.meetin.presentation.mainscreen.account.PostClickedListener" />
+            type="com.isavit.meetin.presentation.mainscreen.account.PostClickedListener" />
 
     </data>
 

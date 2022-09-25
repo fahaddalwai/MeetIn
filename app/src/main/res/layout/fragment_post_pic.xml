@@ -6,7 +6,7 @@
     <data>
             <variable
                 name="viewModel"
-                type="com.example.meetin.presentation.mainscreen.account.PostPicViewModel" />
+                type="com.isavit.meetin.presentation.mainscreen.account.PostPicViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

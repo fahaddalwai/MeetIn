@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.meetin.presentation.authscreen.SignupViewModel" />
+            type="com.isavit.meetin.presentation.authscreen.SignupViewModel" />
 
 
     </data>

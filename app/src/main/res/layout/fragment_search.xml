@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.meetin.presentation.mainscreen.search.SearchViewModel" />
+            type="com.isavit.meetin.presentation.mainscreen.search.SearchViewModel" />
 
     </data>
 

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.meetin.presentation.mainscreen.home.HomeViewModel" />
+            type="com.isavit.meetin.presentation.mainscreen.home.HomeViewModel" />
 
     </data>
 

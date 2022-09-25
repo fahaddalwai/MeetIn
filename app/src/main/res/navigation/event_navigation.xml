@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/eventsFragment"
-        android:name="com.example.meetin.presentation.mainscreen.events.EventsFragment"
+        android:name="com.isavit.meetin.presentation.mainscreen.events.EventsFragment"
         android:label="EventsFragment"
         tools:layout="@layout/fragment_events"/>
 </navigation>
