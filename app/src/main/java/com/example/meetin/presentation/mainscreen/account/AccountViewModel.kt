@@ -1,6 +1,5 @@
 package com.example.meetin.presentation.mainscreen.account
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,20 +15,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AccountViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
-    val username= MutableLiveData<String>()
+    val username = MutableLiveData<String>()
 
-    val aboutMe= MutableLiveData<String>()
+    val aboutMe = MutableLiveData<String>()
 
-    val profileImage= MutableLiveData<String>()
+    val profileImage = MutableLiveData<String>()
 
-    val collegeDetails=MutableLiveData<String>()
+    val collegeDetails = MutableLiveData<String>()
 
     private val _posts = MutableLiveData<List<Post>>()
     val posts: LiveData<List<Post>>
         get() = _posts
 
 
-    val followersCount= MutableLiveData<String>()
+    val followersCount = MutableLiveData<String>()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
@@ -39,18 +38,18 @@ class AccountViewModel @Inject constructor(private val repository: Repository) :
     val apiError: LiveData<String>
         get() = _apiError
 
-    fun getAccountDetails(){
-        viewModelScope.launch{
-            repository.getProfileDetails().onEach { result->
+    fun getAccountDetails() {
+        viewModelScope.launch {
+            repository.getProfileDetails().onEach { result ->
                 when (result) {
                     is Resource.Success -> {
-                        followersCount.value= result.data?.friends?.size.toString()+" Friends"
-                        _posts.value= result.data?.posts?.reversed()
+                        followersCount.value = result.data?.friends?.size.toString() + " Friends"
+                        _posts.value = result.data?.posts?.reversed()
 
                         _isLoading.value = false
                         username.value = result.data?.username
                         aboutMe.value = result.data?.aboutMe
-                        profileImage.value=result.data?.profilePic
+                        profileImage.value = result.data?.profilePic
                         collegeDetails.value =
                             "${result.data?.college}  |  ${result.data?.graduationYear}  | ${result.data?.branch}"
 
@@ -60,7 +59,6 @@ class AccountViewModel @Inject constructor(private val repository: Repository) :
                         _isLoading.value = true
                     }
                     is Resource.Error -> {
-                        Log.i("rsultsetst123456",result.message.toString())
                         _apiError.value = result.message
                         _isLoading.value = false
 
@@ -68,15 +66,11 @@ class AccountViewModel @Inject constructor(private val repository: Repository) :
                 }
             }.launchIn(this)
         }
-        }
+    }
 
 
-
-
-
-
-    init{
+    init {
         getAccountDetails()
 
     }
-    }
+}

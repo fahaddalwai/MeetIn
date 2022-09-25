@@ -2,20 +2,19 @@ package com.example.meetin.presentation.authscreen
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.meetin.BuildConfig
 import com.example.meetin.R
 import com.example.meetin.core.util.Constants
 import com.example.meetin.databinding.FragmentSignInBinding
-import com.example.meetin.databinding.FragmentSignUpBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -43,19 +42,19 @@ class SignInFragment : Fragment() {
 
         viewModel.emailError.observe(viewLifecycleOwner) { msg ->
             if (msg != "") {
-                Toast.makeText(requireContext(),msg, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
             }
         }
 
         viewModel.passwordError.observe(viewLifecycleOwner) { msg ->
             if (msg != "") {
-                Toast.makeText(requireContext(),msg, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
             }
         }
 
         viewModel.apiError.observe(viewLifecycleOwner) { msg ->
             if (msg != "") {
-                Toast.makeText(requireContext(),msg, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
             }
         }
 

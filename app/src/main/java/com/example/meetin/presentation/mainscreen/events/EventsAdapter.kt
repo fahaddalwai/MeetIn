@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meetin.databinding.EventListItemBinding
-import com.example.meetin.databinding.FriendItemBinding
 import com.example.meetin.domain.model.Event
-import com.example.meetin.domain.model.UserDetailsRequest
 import kotlinx.android.synthetic.main.event_list_item.view.*
-import kotlinx.android.synthetic.main.friend_item.view.*
 
 class EventsAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<Event, EventsAdapter.MyViewHolder>(MyDiffUtil) {
@@ -30,16 +27,16 @@ class EventsAdapter(private val onClickListener: OnClickListener) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(event: Event) {
-                Glide.with(binding.smallProfileImage)
-                    .load(event.eventImage)
-                    .centerCrop()
-                    .into(binding.smallProfileImage)
+            Glide.with(binding.smallProfileImage)
+                .load(event.eventImage)
+                .fitCenter()
+                .into(binding.smallProfileImage)
 
-                binding.textView5.text=event.eventName
+            binding.textView5.text = event.eventName
 
-                binding.textView8.text=event.eventTime+" "+event.eventDate
+            binding.textView8.text = event.eventTime + " " + event.eventDate
 
-                binding.textView9.text="By "+event.eventBy
+            binding.textView9.text = "By " + event.eventBy
 
         }
     }
@@ -67,7 +64,10 @@ class EventsAdapter(private val onClickListener: OnClickListener) :
         holder.bind(event)
     }
 
-    class OnClickListener(val clickListenerLocation: (event: Event) -> Unit,val clickListenerShare: (event: Event) -> Unit) {
+    class OnClickListener(
+        val clickListenerLocation: (event: Event) -> Unit,
+        val clickListenerShare: (event: Event) -> Unit
+    ) {
         fun onClickLocation(user: Event) = clickListenerLocation(user)
         fun onClickShare(user: Event) = clickListenerShare(user)
     }

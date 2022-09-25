@@ -1,7 +1,6 @@
 package com.example.meetin.presentation.authscreen
 
 import android.content.Intent
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,7 @@ import com.example.meetin.core.util.Resource
 import com.example.meetin.core.util.isValidEmail
 import com.example.meetin.domain.model.SignupRequest
 import com.example.meetin.domain.repository.Repository
-import com.example.meetin.remote.RepositoryImpl
+import com.example.meetin.domain.userPrefs.UserPreference
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -19,7 +18,10 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class SignupViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class SignupViewModel @Inject constructor(
+    private val repository: Repository,
+    private val userPreference: UserPreference
+) : ViewModel() {
 
     private val _emailError = MutableLiveData<String>()
     val emailError: LiveData<String>
@@ -42,18 +44,13 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
-    val username=MutableLiveData<String>()
+    val username = MutableLiveData<String>()
 
     val email = MutableLiveData<String>()
 
     val password = MutableLiveData<String>()
 
     val repeatedPassword = MutableLiveData<String>()
-
-
-
-
-
 
 
     private fun isValidEmailAndPassword(
@@ -79,6 +76,12 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
         } else {
             _passwordMisMatchError.value = ""
         }
+        if (password.length < 6) {
+            _passwordError.value = ""
+        } else {
+            _passwordError.value = "Cannot be less than 6 characters"
+            return false
+        }
         return true
     }
 
@@ -99,7 +102,8 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
                     when (result) {
                         is Resource.Success -> {
                             _isLoading.value = false
-                            _eventGoToSetup.value=true
+                            _eventGoToSetup.value = true
+                            userPreference.setUserExists(true)
                         }
                         is Resource.Error -> {
                             _isLoading.value = false
@@ -117,14 +121,14 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
     }
 
 
-    fun gsoLogin(data: Intent){
+    fun gsoLogin(data: Intent) {
         viewModelScope.launch {
             repository.gsoSignUp(data)
                 .onEach { result ->
                     when (result) {
                         is Resource.Success -> {
                             _isLoading.value = false
-                            _eventGoToSetup.value= true
+                            _eventGoToSetup.value = true
                         }
                         is Resource.Error -> {
                             _isLoading.value = false
@@ -136,8 +140,6 @@ class SignupViewModel @Inject constructor(private val repository: Repository) : 
                 }.launchIn(this)
         }
     }
-
-
 
 
 }

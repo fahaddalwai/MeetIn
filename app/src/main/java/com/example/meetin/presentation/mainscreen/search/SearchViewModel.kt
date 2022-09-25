@@ -1,6 +1,5 @@
 package com.example.meetin.presentation.mainscreen.search
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -44,10 +43,10 @@ class SearchViewModel @Inject constructor(private val repository: Repository) : 
             delay(500L)
             repository.searchForFriends(query)
                 .onEach { result ->
-                    when(result) {
+                    when (result) {
                         is Resource.Success -> {
                             _isLoading.value = false
-                            _userList.value= result.data as MutableList<UserDetailsRequest>?
+                            _userList.value = result.data as MutableList<UserDetailsRequest>?
                         }
                         is Resource.Error -> {
                             _apiError.value = result.message
@@ -62,15 +61,14 @@ class SearchViewModel @Inject constructor(private val repository: Repository) : 
     }
 
 
-
-    fun addFriend(friend:FriendRequest){
-        viewModelScope.launch{
-            repository.addFriend(friend).onEach { result->
+    fun addFriend(friend: FriendRequest) {
+        viewModelScope.launch {
+            repository.addFriend(friend).onEach { result ->
                 when (result) {
                     is Resource.Success -> {
                         _isLoading.value = false
-                        val userMainList= _userList.value?.toMutableList()
-                        val itr= userMainList?.iterator()
+                        val userMainList = _userList.value?.toMutableList()
+                        val itr = userMainList?.iterator()
                         if (itr != null) {
                             while (itr.hasNext()) {
                                 val user: UserDetailsRequest = itr.next()
@@ -81,7 +79,7 @@ class SearchViewModel @Inject constructor(private val repository: Repository) : 
                         }
 
                         if (userMainList != null) {
-                            _userList.value=userMainList.toList()
+                            _userList.value = userMainList.toList()
                         }
 
 
@@ -100,12 +98,12 @@ class SearchViewModel @Inject constructor(private val repository: Repository) : 
         }
     }
 
-    private fun getFriends(){
-        viewModelScope.launch{
-            repository.searchFriend().onEach { result->
+    private fun getFriends() {
+        viewModelScope.launch {
+            repository.searchFriend().onEach { result ->
                 when (result) {
                     is Resource.Success -> {
-                        _userList.value= result.data
+                        _userList.value = result.data
                         _isLoading.value = false
                     }
                     is Resource.Loading -> {
@@ -121,7 +119,7 @@ class SearchViewModel @Inject constructor(private val repository: Repository) : 
         }
     }
 
-    init{
+    init {
         getFriends()
     }
 }

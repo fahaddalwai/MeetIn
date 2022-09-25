@@ -6,14 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.meetin.databinding.FriendItemBinding
 import com.example.meetin.databinding.FriendsPostBinding
-
-import com.example.meetin.domain.model.FriendRequest
 import com.example.meetin.domain.model.Post
-import com.example.meetin.domain.model.UserDetailsRequest
-
-import kotlinx.android.synthetic.main.friend_item.view.*
 
 class HomePostsAdapter() :
     ListAdapter<Post, HomePostsAdapter.MyViewHolder>(MyDiffUtil) {
@@ -40,26 +34,20 @@ class HomePostsAdapter() :
         fun bind(user: Post?) {
 
             if (user != null) {
-                binding.captionTextView.text= user.caption
-            }
-            if (user != null) {
-                binding.textView5.text=user.name
-            }
+                binding.captionTextView.text = user.caption
 
-            if (user != null) {
+                binding.textView5.text = user.name
+
                 Glide.with(binding.smallProfileImage)
                     .load(user.profileUrl)
-                    .centerCrop()
+                    .fitCenter()
                     .into(binding.smallProfileImage)
-            }
-            if (user != null) {
-                binding.textView9.text=user.university
-            }
 
-            if (user != null) {
+                binding.textView9.text = user.university
+
                 Glide.with(binding.smallProfileImage)
                     .load(user.postUrl)
-                    .centerCrop()
+                    .fitCenter()
                     .into(binding.imageView11)
             }
 

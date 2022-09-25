@@ -15,7 +15,6 @@ import com.example.meetin.databinding.FragmentEventsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
-
 @AndroidEntryPoint
 class EventsFragment : Fragment() {
     private lateinit var binding: FragmentEventsBinding
@@ -29,8 +28,8 @@ class EventsFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.isLoading.observe(viewLifecycleOwner){
-            binding.eventsProgressBar.isVisible=it
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.eventsProgressBar.isVisible = it
         }
 
         val adapter = EventsAdapter(EventsAdapter.OnClickListener({
@@ -39,7 +38,10 @@ class EventsFragment : Fragment() {
             startActivity(intent)
         }, {
             val intent = Intent(Intent.ACTION_SEND)
-            intent.putExtra(Intent.EXTRA_TEXT, "${it.eventName} is happening at ${it.eventLocation} on the ${it.eventDate}! Thought you should join me too!")
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                "${it.eventName} is happening at ${it.eventLocation} on the ${it.eventDate}! Thought you should join me too!"
+            )
             intent.type = "text/plain"
             startActivity(Intent.createChooser(intent, "Share Via"))
         }))

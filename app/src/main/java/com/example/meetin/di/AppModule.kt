@@ -1,6 +1,9 @@
 package com.example.meetin.di
 
+import android.app.Application
 import com.example.meetin.domain.repository.Repository
+import com.example.meetin.domain.userPrefs.UserPreference
+import com.example.meetin.domain.userPrefs.UserPreferenceImpl
 import com.example.meetin.remote.RepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -14,16 +17,16 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule{
+object AppModule {
 
     @Provides
     @Singleton
     fun provideAppApiRepository(
-       auth:FirebaseAuth,
-       db:Firebase,
-       storage: FirebaseStorage
+        auth: FirebaseAuth,
+        db: Firebase,
+        storage: FirebaseStorage
     ): Repository {
-        return RepositoryImpl(auth,db,storage)
+        return RepositoryImpl(auth, db, storage)
     }
 
     @Singleton
@@ -37,5 +40,11 @@ object AppModule{
     @Singleton
     @Provides
     fun provideFirebaseStorage() = FirebaseStorage.getInstance()
+
+    @Singleton
+    @Provides
+    fun providesUserPref(app: Application): UserPreference =
+        UserPreferenceImpl(app)
+
 
 }

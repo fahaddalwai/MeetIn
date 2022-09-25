@@ -1,9 +1,8 @@
 package com.example.meetin.presentation.authscreen
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,15 +11,12 @@ import android.widget.Toast.LENGTH_SHORT
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.meetin.R
-import com.example.meetin.core.util.Constants
 import com.example.meetin.core.util.Constants.GOOGLE_CLIENT_ID
 import com.example.meetin.core.util.Constants.RC_SIGN_IN
-
 import com.example.meetin.databinding.FragmentSignUpBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -43,56 +39,80 @@ class SignUpFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        viewModel.isLoading.observe(viewLifecycleOwner){
-            binding.progressBar.isVisible=it
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.isVisible = it
+        }
+
+        binding.infoTab.setOnClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Password Must")
+            builder.setMessage(
+                "-Be a minimum of 8 characters\n" +
+                        "-Include at least one lowercase letter(a-z)\n" +
+                        "-Include at least one uppercase letter(A-Z)\n" +
+                        "-Include at least one number(0-9)"
+            )
+
+
+            builder.show()
         }
 
 
         viewModel.emailError.observe(viewLifecycleOwner) {
-            if(it!="") {
-                    Toast.makeText(requireContext(),it,LENGTH_SHORT).show()
+            if (it != "") {
+                Toast.makeText(requireContext(), it, LENGTH_SHORT).show()
             }
         }
 
         viewModel.passwordError.observe(viewLifecycleOwner) { msg ->
-            if(msg!="") {
-                Toast.makeText(requireContext(),msg,LENGTH_SHORT).show()
+            if (msg != "") {
+                Toast.makeText(requireContext(), msg, LENGTH_SHORT).show()
             }
         }
 
 
         viewModel.passwordMisMatchError.observe(viewLifecycleOwner) { msg ->
-            if(msg!="") {
-                Toast.makeText(requireContext(),msg,LENGTH_SHORT).show()
+            if (msg != "") {
+                Toast.makeText(requireContext(), msg, LENGTH_SHORT).show()
             }
         }
 
 
 
 
-        viewModel.password.observe(viewLifecycleOwner){ password ->
-            viewModel.repeatedPassword.observe(viewLifecycleOwner){ repeatedPassword ->
-                if(repeatedPassword==password){
-                    binding.correctMatch.setColorFilter(ContextCompat.getColor(requireContext(), R.color.tick_mark_green))
-                }else{
-                    binding.correctMatch.setColorFilter(ContextCompat.getColor(requireContext(), R.color.black))
+        viewModel.password.observe(viewLifecycleOwner) { password ->
+            viewModel.repeatedPassword.observe(viewLifecycleOwner) { repeatedPassword ->
+                if (repeatedPassword == password) {
+                    binding.correctMatch.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.tick_mark_green
+                        )
+                    )
+                } else {
+                    binding.correctMatch.setColorFilter(
+                        ContextCompat.getColor(
+                            requireContext(),
+                            R.color.black
+                        )
+                    )
                 }
             }
         }
 
 
-        binding.signupButton.setOnClickListener{
+        binding.signupButton.setOnClickListener {
             viewModel.signInUser()
         }
 
 
-        viewModel.eventGoToSetup.observe(viewLifecycleOwner){
-            if(it){
+        viewModel.eventGoToSetup.observe(viewLifecycleOwner) {
+            if (it) {
                 findNavController().navigate(R.id.action_signUpFragment_to_setupAccountFragment)
             }
         }
 
-        binding.signinButton.setOnClickListener{
+        binding.signinButton.setOnClickListener {
             findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
 
         }

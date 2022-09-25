@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.meetin.core.util.Resource
 import com.example.meetin.domain.model.Event
-import com.example.meetin.domain.model.UserDetailsRequest
 import com.example.meetin.domain.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -30,12 +29,12 @@ class EventViewModel @Inject constructor(private val repository: Repository) : V
     val eventList: LiveData<List<Event>>
         get() = _eventList
 
-    private fun getFriends(){
-        viewModelScope.launch{
-            repository.getAllEvents().onEach { result->
+    private fun getFriends() {
+        viewModelScope.launch {
+            repository.getAllEvents().onEach { result ->
                 when (result) {
                     is Resource.Success -> {
-                        _eventList.value= result.data
+                        _eventList.value = result.data
                         _isLoading.value = false
                     }
                     is Resource.Loading -> {
@@ -51,7 +50,7 @@ class EventViewModel @Inject constructor(private val repository: Repository) : V
     }
 
 
-    init{
+    init {
         getFriends()
     }
 }

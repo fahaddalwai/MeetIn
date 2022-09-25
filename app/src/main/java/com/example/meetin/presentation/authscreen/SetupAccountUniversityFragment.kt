@@ -2,8 +2,6 @@ package com.example.meetin.presentation.authscreen
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +10,10 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.meetin.R
-import com.example.meetin.databinding.FragmentSetupAccountBinding
 import com.example.meetin.databinding.FragmentSetupAccountUniversityBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -45,7 +43,7 @@ class SetupAccountUniversityFragment : Fragment() {
 
         val collegeOptions = resources.getStringArray(R.array.CollegeOptions)
 
-        val courseOptions=resources.getStringArray(R.array.BranchOptions)
+        val courseOptions = resources.getStringArray(R.array.BranchOptions)
 
         val spinnerBranch = binding.branchText
 
@@ -68,9 +66,11 @@ class SetupAccountUniversityFragment : Fragment() {
 
         spinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>,
-                                        view: View, position: Int, id: Long) {
-                    viewModel.college.value=collegeOptions[position]
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int, id: Long
+            ) {
+                viewModel.college.value = collegeOptions[position]
 
             }
 
@@ -81,9 +81,11 @@ class SetupAccountUniversityFragment : Fragment() {
 
         spinnerBranch.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>,
-                                        view: View, position: Int, id: Long) {
-                viewModel.branch.value=courseOptions[position]
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View, position: Int, id: Long
+            ) {
+                viewModel.branch.value = courseOptions[position]
 
             }
 
@@ -122,7 +124,7 @@ class SetupAccountUniversityFragment : Fragment() {
                 DatePickerDialog(
                     fragActivity,
                     { _, year, _, _ ->
-                        binding.joinedYear.text=year.toString()
+                        binding.joinedYear.text = year.toString()
                     },
                     year,
                     month,
@@ -142,7 +144,7 @@ class SetupAccountUniversityFragment : Fragment() {
                 DatePickerDialog(
                     fragActivity,
                     { _, year, _, _ ->
-                        binding.graduationYear.text=year.toString()
+                        binding.graduationYear.text = year.toString()
                     },
                     year,
                     month,

@@ -8,8 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.meetin.core.util.Resource
 import com.example.meetin.domain.repository.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -19,7 +17,7 @@ import javax.inject.Inject
 class PostPicViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
 
-    val caption= MutableLiveData<String>()
+    val caption = MutableLiveData<String>()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
@@ -38,32 +36,33 @@ class PostPicViewModel @Inject constructor(private val repository: Repository) :
     val goBackAccount: LiveData<Boolean>
         get() = _goBackAccount
 
-    fun addImageToFirebase(uri: Uri){
-        if(caption.value.toString().isNotEmpty() && caption.value.toString()!="null"){
+    fun addImageToFirebase(uri: Uri) {
+        if (caption.value.toString().isNotEmpty() && caption.value.toString() != "null") {
             viewModelScope.launch {
-                viewModelScope.launch{
-                    repository.postImage(uri,caption.value.toString())
-                        .onEach { result->
-                            when(result){
+                viewModelScope.launch {
+                    repository.postImage(uri, caption.value.toString())
+                        .onEach { result ->
+                            when (result) {
                                 is Resource.Success -> {
-                                    _isLoading.value=false
-                                    _goBackAccount.value=true
+                                    _isLoading.value = false
+                                    _goBackAccount.value = true
                                 }
                                 is Resource.Loading -> {
-                                    _isLoading.value=true
-                                    _goBackAccount.value=false
+                                    _isLoading.value = true
+                                    _goBackAccount.value = false
                                 }
                                 is Resource.Error -> {
-                                    _isLoading.value=false
-                                    _apiError.value=result.message
-                                    _goBackAccount.value=false
+                                    _isLoading.value = false
+                                    _apiError.value = result.message
+                                    _goBackAccount.value = false
                                 }
                             }
                         }.launchIn(this)
 
-                }}
-        }else{
-            _captionEmpty.value="Caption is empty! Enter a caption too"
+                }
+            }
+        } else {
+            _captionEmpty.value = "Caption is empty! Enter a caption too"
         }
 
     }

@@ -5,7 +5,7 @@ data class FriendRequest(
     val email: String?,
     val username: String = "",
     val profilePic: String = "",
-    val university:String= "",
+    val university: String = "",
     val posts: List<Post> = emptyList<Post>()
 ) {
     constructor() : this("", "")

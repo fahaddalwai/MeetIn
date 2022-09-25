@@ -14,15 +14,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SetupAccountUniversityViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
+class SetupAccountUniversityViewModel @Inject constructor(private val repository: Repository) :
+    ViewModel() {
 
-    val college= MutableLiveData<String>()
+    val college = MutableLiveData<String>()
 
-    val joinedYear= MutableLiveData<String>()
+    val joinedYear = MutableLiveData<String>()
 
-    val graduationYear= MutableLiveData<String>()
+    val graduationYear = MutableLiveData<String>()
 
-    val branch= MutableLiveData<String>()
+    val branch = MutableLiveData<String>()
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean>
@@ -42,13 +43,13 @@ class SetupAccountUniversityViewModel @Inject constructor(private val repository
         get() = _nextPage
 
 
-
     fun updateUserDetails() {
-        if(!(college.value.toString().isNullOrEmpty() ||
+        if (!(college.value.toString().isNullOrEmpty() ||
                     joinedYear.value.toString().isNullOrEmpty() ||
                     branch.value.toString().isNullOrEmpty() ||
                     branch.value.toString().isNullOrEmpty() ||
-                    graduationYear.value.toString().isNullOrEmpty()))
+                    graduationYear.value.toString().isNullOrEmpty())
+        )
             viewModelScope.launch {
                 repository.uploadCollegeDetailsToFirebase(
                     UserDetailsRequest(
@@ -69,15 +70,15 @@ class SetupAccountUniversityViewModel @Inject constructor(private val repository
                             _isLoading.value = true
                         }
                         is Resource.Error -> {
-                            _apiError.value=result.message
+                            _apiError.value = result.message
                             _isLoading.value = false
 
                         }
                     }
                 }.launchIn(this)
 
-            }else{
-            _emptyError.value="Some fields seem to be empty!"
+            } else {
+            _emptyError.value = "Some fields seem to be empty!"
         }
     }
 

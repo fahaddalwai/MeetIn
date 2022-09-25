@@ -4,19 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.meetin.R
 import com.example.meetin.databinding.FragmentPostPicBinding
-import com.example.meetin.databinding.FragmentSetupAccountBinding
-import com.example.meetin.presentation.authscreen.SetupViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +24,7 @@ class PostPicFragment : Fragment() {
     private lateinit var binding: FragmentPostPicBinding
     private val viewModel: PostPicViewModel by viewModels()
 
-    var imageUri:Uri? = null
+    var imageUri: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,48 +36,52 @@ class PostPicFragment : Fragment() {
 
 
         viewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.progressBar5.isVisible=it
+            binding.progressBar5.isVisible = it
         }
 
 
-        binding.changeUpload.setOnClickListener{
+        binding.changeUpload.setOnClickListener {
             ImagePicker.with(this)
-                .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                .maxResultSize(480, 480)	//Final image resolution will be less than 1080 x 1080(Optional)
+                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(
+                    480,
+                    480
+                )    //Final image resolution will be less than 1080 x 1080(Optional)
                 .start()
         }
 
 
 
-        binding.postButton.setOnClickListener{
-            if(imageUri!=null) {
+        binding.postButton.setOnClickListener {
+            if (imageUri != null) {
                 viewModel.addImageToFirebase(imageUri!!)
-            }else{
-                Toast.makeText(requireContext(),"Please Upload an image first", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Please Upload an image first", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
 
         viewModel.apiError.observe(viewLifecycleOwner) { msg ->
             if (msg != "") {
-                Toast.makeText(requireContext(),msg, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
             }
         }
 
         viewModel.captionEmpty.observe(viewLifecycleOwner) { msg ->
             if (msg != "") {
-                Toast.makeText(requireContext(),msg, Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
             }
         }
 
-        viewModel.goBackAccount.observe(viewLifecycleOwner){
-            if(it){
+        viewModel.goBackAccount.observe(viewLifecycleOwner) {
+            if (it) {
                 findNavController().navigate(R.id.action_postPicFragment_to_accountFragment)
             }
         }
 
 
-        binding.backButton.setOnClickListener{
+        binding.backButton.setOnClickListener {
             findNavController().navigate(R.id.action_postPicFragment_to_accountFragment)
         }
 
@@ -94,7 +96,7 @@ class PostPicFragment : Fragment() {
 
                 val image = data.dataString
                 imageUri = Uri.parse(image)
-                binding.uploadText.isVisible=false
+                binding.uploadText.isVisible = false
 
                 binding.imagePost.setImageURI(imageUri)
             }

@@ -32,9 +32,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:text="@{viewModel.aboutMe}"
             android:textSize="18sp"
             android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/bio_name"
             app:layout_constraintTop_toBottomOf="@+id/bio_name" />
 
@@ -43,20 +46,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="@{viewModel.username}"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/profile_picture"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/profile_picture"
             app:layout_constraintTop_toBottomOf="@+id/profile_picture" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profile_picture"
+            profileUrlMain="@{viewModel.profileImage}"
             android:layout_width="160dp"
             android:layout_height="160dp"
-            profileUrlMain="@{viewModel.profileImage}"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:background="@color/light_green"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +110,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:text="@{viewModel.collegeDetails}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/bio_caption"
             app:layout_constraintTop_toBottomOf="@+id/bio_caption" />
 

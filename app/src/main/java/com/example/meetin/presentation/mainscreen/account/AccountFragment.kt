@@ -1,13 +1,12 @@
 package com.example.meetin.presentation.mainscreen.account
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -28,26 +27,29 @@ class AccountFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        viewModel.isLoading.observe(viewLifecycleOwner){
-            binding.progressBar4.isVisible=it
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar4.isVisible = it
         }
 
         val manager = GridLayoutManager(activity, 3, GridLayoutManager.VERTICAL, false)
 
         binding.recyclerView.layoutManager = manager
 
-        viewModel.posts.observe(viewLifecycleOwner){ list ->
+        viewModel.posts.observe(viewLifecycleOwner) { list ->
 
-            Log.i("my psots",list.toString())
-
-            val imagesAdapter=UserPostsAdapter(PostClickedListener(){
-                findNavController().navigate(AccountFragmentDirections.actionAccountFragmentToExpandedPostFragment(it.postUrl,it.caption))
+            val imagesAdapter = UserPostsAdapter(PostClickedListener() {
+                findNavController().navigate(
+                    AccountFragmentDirections.actionAccountFragmentToExpandedPostFragment(
+                        it.postUrl,
+                        it.caption
+                    )
+                )
             })
-            binding.recyclerView.adapter=imagesAdapter
+            binding.recyclerView.adapter = imagesAdapter
             imagesAdapter.submitList(list)
         }
 
-        binding.addImage.setOnClickListener{
+        binding.addImage.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_postPicFragment)
         }
 

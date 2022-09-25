@@ -11,39 +11,39 @@ interface Repository {
 
     fun signup(user: SignupRequest): Flow<Resource<SignupResponse>>
 
-    fun login(user:SignupRequest): Flow<Resource<SignupResponse>>
+    fun login(user: SignupRequest): Flow<Resource<SignupResponse>>
 
     fun inputUserDetails(user: UserDetailsRequest)
 
-    fun gsoSignIn(data: Intent?):Flow<Resource<FirebaseUser>>
+    fun gsoSignIn(data: Intent?): Flow<Resource<FirebaseUser>>
 
-    fun gsoSignUp(data: Intent?):Flow<Resource<FirebaseUser>>
+    fun gsoSignUp(data: Intent?): Flow<Resource<FirebaseUser>>
 
-    fun checkIfUsernameExists(username:String):Flow<Resource<String>>
+    fun checkIfUsernameExists(username: String): Flow<Resource<String>>
 
-    fun uploadImage(fileUri: Uri):Flow<Resource<String>>
-    
-    fun uploadProfileImageToFirebase(url:String)
+    fun uploadImage(fileUri: Uri): Flow<Resource<String>>
 
-    fun uploadPersonalDetailsToFirebase(user: UserDetailsRequest):Flow<Resource<String>>
+    fun uploadProfileImageToFirebase(url: String)
 
-    fun uploadCollegeDetailsToFirebase(user:UserDetailsRequest):Flow<Resource<String>>
+    fun uploadPersonalDetailsToFirebase(user: UserDetailsRequest): Flow<Resource<String>>
 
-    fun getProfileDetails():Flow<Resource<UserDetailsRequest>>
+    fun uploadCollegeDetailsToFirebase(user: UserDetailsRequest): Flow<Resource<String>>
 
-    fun postImage(fileUri: Uri,caption:String):Flow<Resource<String>>
+    fun getProfileDetails(): Flow<Resource<UserDetailsRequest>>
 
-    fun searchFriend():Flow<Resource<List<UserDetailsRequest>>>
+    fun postImage(fileUri: Uri, caption: String): Flow<Resource<String>>
 
-    fun addFriend(friend: FriendRequest):Flow<Resource<String>>
+    fun searchFriend(): Flow<Resource<List<UserDetailsRequest>>>
 
-    fun showFriendsPosts():Flow<Resource<List<Post>>>
+    fun addFriend(friend: FriendRequest): Flow<Resource<String>>
 
-    fun searchForFriends(friend:String):Flow<Resource<List<UserDetailsRequest>>>
+    fun showFriendsPosts(): Flow<Resource<List<Post>>>
 
-    fun getAllEvents():Flow<Resource<List<Event>>>
+    fun searchForFriends(friend: String): Flow<Resource<List<UserDetailsRequest>>>
 
-    fun logOut():Flow<Resource<Boolean>>
+    fun getAllEvents(): Flow<Resource<List<Event>>>
 
-    fun checkIfLoggedIn():Flow<Resource<Boolean>>
+    fun logOut(): Flow<Resource<Boolean>>
+
+    fun checkIfLoggedIn(): Flow<Resource<Boolean>>
 }

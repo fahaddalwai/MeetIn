@@ -1,22 +1,20 @@
 package com.example.meetin.presentation.mainscreen.account
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.meetin.databinding.PostItemAccountBinding
 import com.example.meetin.domain.model.Post
 
-class UserPostsAdapter(val clickListener: PostClickedListener)  : ListAdapter<Post, UserPostsAdapter.ViewHolder>(PlacesModelDiffCallback()) {
+class UserPostsAdapter(val clickListener: PostClickedListener) :
+    ListAdapter<Post, UserPostsAdapter.ViewHolder>(PlacesModelDiffCallback()) {
 
-    class ViewHolder private constructor(private val binding: PostItemAccountBinding) : RecyclerView.ViewHolder(binding.root){
+    class ViewHolder private constructor(private val binding: PostItemAccountBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Post,clickListener:PostClickedListener) {
+        fun bind(item: Post, clickListener: PostClickedListener) {
 
             binding.image = item
             binding.clickListener = clickListener
@@ -35,7 +33,7 @@ class UserPostsAdapter(val clickListener: PostClickedListener)  : ListAdapter<Po
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val placesModel=getItem(position)!!
+        val placesModel = getItem(position)!!
         holder.bind(placesModel, clickListener)
     }
 
@@ -45,8 +43,6 @@ class UserPostsAdapter(val clickListener: PostClickedListener)  : ListAdapter<Po
 
 
 }
-
-
 
 
 class PlacesModelDiffCallback : DiffUtil.ItemCallback<Post>() {
@@ -62,7 +58,7 @@ class PlacesModelDiffCallback : DiffUtil.ItemCallback<Post>() {
 }
 
 
-class PostClickedListener(val clickListener: (postImage:Post) -> Unit) {
+class PostClickedListener(val clickListener: (postImage: Post) -> Unit) {
     fun onClick(postImage: Post) = clickListener(postImage)
 }
 
