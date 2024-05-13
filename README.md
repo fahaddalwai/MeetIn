@@ -1,4 +1,4 @@
-<h1 align="center" id="title">MeetIn💬‍</h1>
+<h1 align="center" id="title">MeetIn🚀‍</h1>
 
 <p align="center"><img src="https://socialify.git.ci/fahaddalwai/MeetIn/image?language=1&amp;logo=https%3A%2F%2Fsource.android.com%2Fstatic%2Fdocs%2Fsetup%2Fimages%2FAndroid_symbol_green_RGB.png&amp;name=1&amp;owner=1&amp;stargazers=1&amp;theme=Light" alt="project-image"></p>
 
