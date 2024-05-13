@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://socialify.git.ci/fahaddalwai/MeetIn/image?language=1&amp;logo=https%3A%2F%2Fsource.android.com%2Fstatic%2Fdocs%2Fsetup%2Fimages%2FAndroid_symbol_green_RGB.png&amp;name=1&amp;owner=1&amp;stargazers=1&amp;theme=Light" alt="project-image"></p>
 
-<p id="description">Android Social Media Application built using Kotlin and Firebase. Share images on your feed find out about the latest events in campus and make friends with those around campus at VIT! 
+<p id="description">Android Social Media Application built using Kotlin and Firebase. Share images on your feed, find out about the latest events in campus, and make friends with those around campus at VIT! 
   
 Built using all the good stuff like Clean Architecture principles, MVVM pattern, Dependency injection, Coroutines, Paging...you get the gist ; )</p>
 
